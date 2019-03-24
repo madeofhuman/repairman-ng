@@ -1,0 +1,33 @@
+<div class="row pt-5">
+    <div class="col-md-6 mx-auto">
+      <div class="card rounded-0">
+        <div class="card-header">
+          <h3 class="mb-0">Welcome back!</h3>
+        </div>
+        <div class="card-body">
+          <form class="form">
+
+            <div class="form-group">
+              <label for=""></label>
+              <input
+                [(ngModel)]="user_email"
+                #email="ngModel"
+                name="email"
+                id="email" type="email" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="form-group">
+              <label for=""></label>
+              <input
+                [(ngModel)]="user_password"
+                #password="ngModel"
+                name="password"
+                id="password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <button class="btn btn-default btn-block" (click)="submitForm(userName)">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
