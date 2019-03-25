@@ -12,7 +12,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: 'dashboard/cars',
+        path: 'cars',
         component: CarComponent
       }
     ]

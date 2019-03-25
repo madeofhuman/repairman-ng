@@ -16,11 +16,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  log(x: any) {
-    console.log(x);
-    console.log(x.value);
-  }
-
   submitForm(username: any, email: any, password: any, confirmPassword: any) {
     console.log(username.value, email.value, password.value, confirmPassword.value);
     if (!(username.valid && email.valid && password.valid)) {
