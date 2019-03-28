@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-register',
@@ -9,23 +10,25 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  localErrors: object;
+  private readonly notifier: NotifierService;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private notifierService: NotifierService
+    ) {
+      this.notifier = notifierService;
+    }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   submitForm(username: any, email: any, password: any, confirmPassword: any) {
-    console.log(username.value, email.value, password.value, confirmPassword.value);
     if (!(username.valid && email.valid && password.valid)) {
-      this.localErrors = { invalidFields: true };
-      setTimeout(() => this.clearErrors(), 5000);
+      this.displayErrorMessage('This form contains invalid fields' );
       return false;
     }
     if (password.value !== confirmPassword.value) {
-      this.localErrors = { passwordConfirmed: true };
-      setTimeout(() => this.clearErrors(), 5000);
+      this.displayErrorMessage('The supplied passwords do not match' );
       return false;
     }
 
@@ -37,25 +40,32 @@ export class RegisterComponent implements OnInit {
     });
 
     this.authService.registerUser(userObject).subscribe((response) => {
-      if (response.status === 201) {
-        localStorage.setItem('auth_token', response.auth_token);
-        localStorage.setItem('auth_user', JSON.stringify(response.user_info));
-        this.router.navigate(['/dashboard']);
-      } else if (response.status === 200) {
-        this.localErrors = { existingUser: true };
-        setTimeout(() => this.clearErrors(), 5000);
-        return false;
+      if (response) {
+        if (response.status === 201) {
+          const name = response.user_info.name;
+          localStorage.setItem('auth_token', response.auth_token);
+          localStorage.setItem('auth_user', JSON.stringify(response.user_info));
+          this.router.navigate(['/dashboard']);
+          this.displaySuccessMessage(`Sign up Successful. Welcome ${name}`);
+
+        } else if (response.status === 200) {
+          this.displayErrorMessage('This username/email already exists in the database' );
+          return false;
+        }
       } else {
-        this.localErrors = { serverError: true };
-        setTimeout(() => this.clearErrors(), 5000);
+        this.displayErrorMessage('There was an error creating your account. Please try again' );
         return false;
       }
     });
 
   }
 
-  clearErrors() {
-    this.localErrors = null;
+  displayErrorMessage(message: string): void {
+    this.notifier.notify( 'error', message);
+  }
+
+  displaySuccessMessage(message: string): void {
+    this.notifier.notify('success', message);
   }
 
 }

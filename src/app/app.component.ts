@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'repairman';
+  private readonly notifier: NotifierService;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private notifierService: NotifierService
+  ) {
+    this.notifier = notifierService;
+  }
+
+  logOut(): void {
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('auth_user');
+    this.router.navigate(['/']);
+    this.notifier.notify('info', 'You have successfully logged out of the platform!');
+  }
+
 }

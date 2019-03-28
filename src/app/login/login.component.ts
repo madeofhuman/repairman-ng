@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +10,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  private readonly notifier: NotifierService;
+
+  constructor(
+  private authService: AuthService,
+  private router: Router,
+  notifierService: NotifierService) {
+    this.notifier = notifierService;
+  }
 
   ngOnInit() {
   }
 
-  submitForm() {
-    return null;
+  submitForm(email: any, password: any) {
+    if (!(email.valid && password.valid)) {
+      this.displayErrorMessage('This form contains invalid fields' );
+      return false;
+    }
+
+    const userCredentials = JSON.stringify({
+      email: email.value,
+      password: password.value
+    });
+
+    this.authService.loginUser(userCredentials).subscribe((response) => {
+      if (response) {
+        const username = response.user_info.name;
+        localStorage.setItem('auth_token', response.auth_token);
+        localStorage.setItem('auth_user', JSON.stringify(response.user_info));
+        this.router.navigate(['/dashboard']);
+        this.displaySuccessMessage(`Login Successful. Welcome ${username}`);
+      } else {
+        this.displayErrorMessage('Invalid credentials' );
+        return false;
+      }
+    });
+  }
+
+  displayErrorMessage(message: string): void {
+    this.notifier.notify( 'error', message);
+  }
+
+  displaySuccessMessage(message: string): void {
+    this.notifier.notify('success', message);
   }
 
 }

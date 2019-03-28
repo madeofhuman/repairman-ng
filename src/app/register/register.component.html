@@ -32,22 +32,22 @@
           </div>
 
           <div class="form-group">
-              <label for=""></label>
-              <input
-                required
-                pattern="\S+@\S+\.\S+"
-                [(ngModel)]="userEmail"
-                #email="ngModel"
-                name="email"
-                id="email"
-                type="email"
-                class="form-control"
-                placeholder="Email">
-                <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
-                    <div *ngIf="email.errors.required">Email field is required</div>
-                    <div *ngIf="email.errors.pattern">Invalid email</div>
-                </div>
+            <label for=""></label>
+            <input
+              required
+              pattern="\S+@\S+\.\S+"
+              [(ngModel)]="userEmail"
+              #email="ngModel"
+              name="email"
+              id="email"
+              type="email"
+              class="form-control"
+              placeholder="Email">
+            <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
+                <div *ngIf="email.errors.required">Email field is required</div>
+                <div *ngIf="email.errors.pattern">Invalid email</div>
             </div>
+          </div>
 
             <div class="form-group">
               <label for=""></label>
@@ -93,7 +93,7 @@
           <button
             class="btn btn-default btn-block"
             (click)="submitForm(userName, email, password, password_confirm)">
-            Submit
+              Sign up
           </button>
         </form>
       </div>
