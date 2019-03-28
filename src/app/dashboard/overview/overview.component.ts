@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CarService } from 'src/app/car/car.service';
+import { Car } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-overview',
@@ -8,10 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class OverviewComponent implements OnInit {
 
   userDetails: object = JSON.parse(localStorage.getItem('auth_user'));
+  cars: Car[];
 
-  constructor() { }
+  constructor(
+    private carService: CarService
+  ) { }
 
   ngOnInit() {
+    this.getCars();
+  }
+
+  getCars(): void {
+    this.carService.getCars()
+      .subscribe((cars) => this.cars = cars);
   }
 
 }

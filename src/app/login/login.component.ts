@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('auth_token', response.auth_token);
         localStorage.setItem('auth_user', JSON.stringify(response.user_info));
         this.router.navigate(['/dashboard']);
-        this.displaySuccessMessage(`Login Successful. Welcome ${username}`);
+        this.displaySuccessMessage('Login Successful');
       } else {
         this.displayErrorMessage('Invalid credentials' );
         return false;

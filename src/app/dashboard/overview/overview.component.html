@@ -25,8 +25,26 @@
     </div>
   </div>
 
+  <div *ngIf="cars" class="container">
+    <div class="jumbotron">
+      <h3 class="display-5">Your cars</h3>
+      <p class="lead">This section displays informations about your registered cars.</p>
+      <hr class="my-4">
+      <p>You currently have <strong>{{ cars.length }}</strong> cars registered</p>
+      <p class="lead">
+        <a class="btn btn-more btn-lg" routerLink="cars/new" role="button">Add a new car</a>
+      </p>
+    </div>
+  </div>
+
   <div class="container">
-    <div class="row pt-5">
-      <h5 class="cars">Your cars</h5>
+    <div class="jumbotron">
+      <h3 class="display-5">Services</h3>
+      <p class="lead">We will display your services here</p>
+      <hr class="my-4">
+      <p>Add a car to book an inspection.</p>
+      <p class="lead">
+        <a class="btn btn-more btn-lg" routerLink="cars/new" role="button">Add a car</a>
+      </p>
     </div>
   </div>

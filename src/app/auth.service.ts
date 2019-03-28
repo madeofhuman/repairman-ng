@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, map, catchError } from 'rxjs/operators';
 import { UserResponse } from './shared/models';
+import { environment } from '../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -10,13 +11,15 @@ const httpOptions = {
   })
 };
 
+const APIEndpoint = environment.APIEndPoint;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private registrationRoute = 'http://localhost:3000/signup';
-  private loginRoute = 'http://localhost:3000/auth/login';
+  private registrationRoute = APIEndpoint + 'signup';
+  private loginRoute = APIEndpoint + 'auth/login';
 
   constructor(private http: HttpClient) { }
 

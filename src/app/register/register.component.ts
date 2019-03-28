@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
           localStorage.setItem('auth_token', response.auth_token);
           localStorage.setItem('auth_user', JSON.stringify(response.user_info));
           this.router.navigate(['/dashboard']);
-          this.displaySuccessMessage(`Sign up Successful. Welcome ${name}`);
+          this.displaySuccessMessage('Sign up Successful');
 
         } else if (response.status === 200) {
           this.displayErrorMessage('This username/email already exists in the database' );

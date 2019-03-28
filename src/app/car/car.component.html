@@ -1,0 +1,49 @@
+<div class="row car-header">
+  <div class="col-md-9">
+    <div class="car-title">
+      <h3 class="title">My cars</h3>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card-body">
+      <p class="card-text"><a class="btn btn-more btn-sm" routerLink="/dashboard/cars/new" role="button">Add a car</a></p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!cars || cars.length === 0" class="container">
+  <div class="jumbotron">
+    <hr class="my-4">
+    <p>You currently have <strong>0</strong> cars registered</p>
+    <p class="lead">
+      <a class="btn btn-more btn-lg" routerLink="new" role="button">Add a new car</a>
+    </p>
+  </div>
+</div>
+
+<div *ngIf="cars" [@postStagger]="cars">
+  <div *ngFor="let car of cars" class="pt-2" style="cursor: pointer;" (click)="carDetails(car)">
+      <div class="card mb-3" >
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="assets/img/car.png" class="card-img" alt="...">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <p class="card-text">{{car.make}}</p>
+              <h5 class="card-title">{{car.make}}</h5>
+              <p class="card-text">{{car.trim}}</p>
+              <p class="card-text">Added <small class="text-muted">{{ car.created_at | timeAgo}}</small></p>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="card-body">
+                <i class="material-icons" (click)="removeCar(car)" matTooltip="Info about the action">
+                  delete
+                </i>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+</div>

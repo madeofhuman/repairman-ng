@@ -22,3 +22,14 @@ export interface SignInData {
   email: string;
   password: string;
 }
+
+export interface Car {
+  id?: number;
+  make: string;
+  year: number;
+  model: string;
+  trim: string;
+  created_by?: number;
+  created_at?: string;
+  updated_at?: string;
+}

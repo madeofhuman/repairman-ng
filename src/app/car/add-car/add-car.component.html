@@ -1,0 +1,138 @@
+<div class="pt-5">
+  <div class="card text-center">
+    <div class="card-header">
+      <h4 class="add-car-header">Add a new car</h4>
+    </div>
+    <div class="card-body">
+      <div class="mx-auto" style="width:50%;">
+        <form class="form">
+          <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@Make&nbsp;</div>
+                </div>
+                <input
+                  minlength="3"
+                  required
+                  pattern="[A-Za-z0-9-_]+"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="make"
+                  #carMake="ngModel"
+                  name="make"
+                  id="make"
+                  placeholder="Enter make of car...">
+              </div>
+              <div *ngIf="carMake.touched && !carMake.valid" class="alert alert-danger">
+                <div *ngIf="carMake.errors.required">This field is required</div>
+                <div *ngIf="carMake.errors.minlength">
+                  Make must be atleast {{carMake.errors.minlength.requiredLength}} characters long
+                </div>
+                <div *ngIf="carMake.errors.pattern">
+                  Car make cannot contain wild cards
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@Year  &nbsp;&nbsp;</div>
+                </div>
+                <input
+                  required
+                  minlength="4"
+                  maxlength="4"
+                  pattern="[0-9]+"
+                  [(ngModel)]="year"
+                  #carYear="ngModel"
+                  name="year"
+                  type="text"
+                  class="form-control"
+                  id="car-year"
+                  placeholder="Enter year of car make...">
+              </div>
+              <div *ngIf="carYear.touched && !carYear.valid" class="alert alert-danger">
+                <div *ngIf="carYear.errors.required">This field is required</div>
+                <div *ngIf="carYear.errors.minlength">
+                  Make must be atleast {{carYear.errors.minlength.requiredLength}} characters long
+                </div>
+                <div *ngIf="carYear.errors.pattern">
+                  Year must be a number
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@Trim &nbsp;&nbsp;</div>
+                </div>
+                <input
+                  required
+                  minlength="2"
+                  pattern="[0-9A-Za-z ]+"
+                  [(ngModel)]="trim"
+                  #carTrim="ngModel"
+                  name="trim"
+                  type="text"
+                  class="form-control"
+                  id="car-trim"
+                  placeholder="Enter car trim...">
+              </div>
+              <div *ngIf="carTrim.touched && !carTrim.valid" class="alert alert-danger">
+                <div *ngIf="carTrim.errors.required">This field is required</div>
+                <div *ngIf="carTrim.errors.minlength">
+                  Make must be atleast {{carTrim.errors.minlength.requiredLength}} characters long
+                </div>
+                <div *ngIf="carTrim.errors.pattern">
+                  Car trim cannot contains wild cards
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@Model</div>
+                </div>
+                <input
+                  required
+                  minlength="2"
+                  pattern="[A-Za-z0-9\s]+"
+                  [(ngModel)]="moel"
+                  #carModel="ngModel"
+                  name="model"
+                  type="text"
+                  class="form-control"
+                  id="car-model"
+                  placeholder="Enter car model...">
+              </div>
+              <div *ngIf="carModel.touched && !carModel.valid" class="alert alert-danger">
+                <div *ngIf="carModel.errors.required">This field is required</div>
+                <div *ngIf="carModel.errors.minlength">
+                  Make must be atleast {{carModel.errors.minlength.requiredLength}} characters long
+                </div>
+                <div *ngIf="carModel.errors.pattern">
+                  Model cannot contain wildcards
+                </div>
+              </div>
+          </div>
+
+          <button
+            class="btn btn-default btn-block"
+            (click)="submitForm(carMake, carYear, carModel, carTrim)">
+              Add Car
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <span style="cursor: pointer;" (click)="goBack()">
+          <i class="material-icons">
+            arrow_back
+          </i><span><strong>Go back</strong></span>
+      </span>
+    </div>
+  </div>    
+</div>

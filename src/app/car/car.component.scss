@@ -1,0 +1,17 @@
+.car-header {
+  background-color: #fff;
+  color: rgba(0,0,0,0.7);
+  border-top: 1px solid #E6E9EC;
+
+  .car-title {
+    padding: 10px 0;
+
+    .welcome-message {
+      padding-top: 15px;
+    }
+  }
+}
+.btn.btn-more {
+  background-color: #00a8ff;
+  color: #fff;
+}

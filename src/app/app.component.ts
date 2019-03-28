@@ -9,7 +9,7 @@ import { NotifierService } from 'angular-notifier';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'repairman';
+
   private readonly notifier: NotifierService;
 
   constructor(
@@ -21,6 +21,7 @@ export class AppComponent {
   }
 
   logOut(): void {
+    this.notifier.hideAll();
     localStorage.removeItem('auth_token');
     localStorage.removeItem('auth_user');
     this.router.navigate(['/']);
