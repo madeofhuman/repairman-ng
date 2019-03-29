@@ -33,6 +33,7 @@ export interface Car {
   created_by?: number;
   created_at?: string;
   updated_at?: string;
+  data?: any;
 }
 
 export interface Quote {

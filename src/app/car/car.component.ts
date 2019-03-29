@@ -58,6 +58,10 @@ export class CarComponent implements OnInit {
     this.getCars();
   }
 
+  checkCarStatus(car: any): boolean {
+    return Array.isArray(car);
+  }
+
   getCars(): void {
     this.carService.getCars()
       .subscribe((cars) => {

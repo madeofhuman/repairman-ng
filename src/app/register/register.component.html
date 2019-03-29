@@ -75,21 +75,6 @@
                 id="password_confirm" type="password" class="form-control" placeholder="Confirm pasword">
             </div>
 
-            <div *ngIf="localErrors" class="alert alert-danger">
-              <div *ngIf="localErrors.passwordConfirmed">
-                Passwords do not match
-              </div>
-              <div *ngIf="localErrors.invalidFields">
-                This form contains invalid fields
-              </div>
-              <div *ngIf="localErrors.existingUser">
-                This user already exists in the database
-              </div>
-              <div *ngIf="localErrors.serverError">
-                There was an error while creating your account. Try refreshing your browser.
-              </div>
-            </div>
-
           <button
             class="btn btn-default btn-block"
             (click)="submitForm(userName, email, password, password_confirm)">

@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div *ngIf="!cars || !cars.length ||(cars.data && !cars.data.length)" class="container">
+<div *ngIf="!cars || !cars.length || !checkCarStatus(cars)" class="container">
   <div class="jumbotron">
     <hr class="my-4">
     <p>You currently have <strong>0</strong> cars registered</p>

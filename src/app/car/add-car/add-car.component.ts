@@ -11,6 +11,10 @@ import { CarService } from '../car.service';
 export class AddCarComponent implements OnInit {
 
   private readonly notifier: NotifierService;
+  make: string;
+  year: number;
+  trim: string;
+  model: string;
 
   constructor(
     private carService: CarService,

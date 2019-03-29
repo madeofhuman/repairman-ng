@@ -28,4 +28,8 @@ export class AppComponent {
     this.notifier.notify('info', 'You have successfully logged out of the platform!');
   }
 
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
 }

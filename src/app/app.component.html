@@ -9,13 +9,13 @@
 
   <div class="collapse navbar-collapse navbar-right" id="navbarTogglerDemo03">
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-      <li *ngIf="!authService.isLoggedIn()" class="nav-item" routerLinkActive="active">
+      <li *ngIf="!isLoggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/register">Register <span class="sr-only"></span></a>
       </li>
-      <li *ngIf="!authService.isLoggedIn()" class="nav-item" routerLinkActive="active">
+      <li *ngIf="!isLoggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
-      <li *ngIf="authService.isLoggedIn()" class="nav-item" routerLinkActive="active" (click)='logOut()'>
+      <li *ngIf="isLoggedIn()" class="nav-item" routerLinkActive="active" (click)='logOut()'>
         <a class="nav-link" routerLink="/login" style="cursor:pointer;">
           <i class="material-icons">
             exit_to_app

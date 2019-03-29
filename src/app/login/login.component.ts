@@ -11,6 +11,10 @@ import { NotifierService } from 'angular-notifier';
 export class LoginComponent implements OnInit {
 
   private readonly notifier: NotifierService;
+  name: string;
+  userEmail: string;
+  userPassword: string;
+  userConfirmPassword: string;
 
   constructor(
   private authService: AuthService,

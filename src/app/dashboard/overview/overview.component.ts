@@ -9,7 +9,7 @@ import { Car } from 'src/app/shared/models';
 })
 export class OverviewComponent implements OnInit {
 
-  userDetails: object = JSON.parse(localStorage.getItem('auth_user'));
+  userDetails: any = JSON.parse(localStorage.getItem('auth_user'));
   cars: Car[];
 
   constructor(

@@ -42,15 +42,6 @@
                 </div>
             </div>
 
-            <div *ngIf="localErrors" class="alert alert-danger">
-              <div *ngIf="localErrors.invalidFields">
-                This form contains invalid fields
-              </div>
-              <div *ngIf="localErrors.serverError">
-                There was an error while accessing your account. Try refreshing your browser.
-              </div>
-            </div>
-
             <button
             class="btn btn-default btn-block"
             (click)="submitForm(email, password)">
