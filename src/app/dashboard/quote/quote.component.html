@@ -1,0 +1,64 @@
+<div *ngIf="carQuotes && carQuotes.length" class="container">
+  <div class="jumbotron">
+    <h4>My quotes</h4>
+    <p>You currently have <strong>{{ carQuotes.length }}</strong> quote{{carQuotes.length === 1 ? '' : "'s"}}</p>
+    <hr class="my-4">
+  </div>
+</div>
+<div class="pt-2">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4 class="add-car-header">Get a quote</h4>
+      </div>
+      <div class="card-body">
+        <div class="mx-auto" style="width:50%;">
+            <form class="form" *ngIf="cars && cars.length > 0">
+              <div class="form-group">
+                <label for="car-model">Select your car</label>
+                <select
+                  required
+                  class="form-control"
+                  [(ngModel)]=carDesc
+                  #car
+                  name="car"
+                  id="car-model">
+                  <option value="" selected>Select your car</option>
+                  <option *ngFor="let car of cars" value="{{car.id}}">{{car.make}} - {{car.model}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="description">Give a description of the car mileage</label>
+                <textarea
+                  required
+                  minlength="10"
+                  class="form-control"
+                  [(ngModel)]="description"
+                  name="description"
+                  #quoteDesc
+                  id="car-description"
+                  rows="3">
+                </textarea>
+              </div>
+              <button class="btn btn-more btn-lg btn-block" (click)="submitForm(car, quoteDesc)" role="button">Get Quote</button>
+            </form>
+        </div>
+        <div *ngIf="cars && !cars.length" class="container">
+          <div class="jumbotron">
+            <hr class="my-4">
+            <p>You currently have <strong>0</strong> cars registered</p>
+            <p class="lead">
+              <a class="btn btn-more btn-lg" routerLink="/dashboard/cars/new" role="button">Add a new car</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <span style="cursor: pointer;" (click)="visitDashboard()">
+            <i class="material-icons">
+              arrow_back
+            </i><span><strong>Back to dashboard</strong></span>
+        </span>
+      </div>
+    </div>    
+  </div>
+  

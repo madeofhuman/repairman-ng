@@ -17,6 +17,10 @@ import { BoardComponent } from './board/board.component';
 import { CarComponent } from './car/car.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
 import { AddCarComponent } from './car/add-car/add-car.component';
+import { QuoteComponent } from './dashboard/quote/quote.component';
+import { ServicesComponent } from './dashboard/services/services.component';
+import { AdviceComponent } from './dashboard/advice/advice.component';
+import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { AddCarComponent } from './car/add-car/add-car.component';
     CarComponent,
     OverviewComponent,
     TimeAgoPipe,
-    AddCarComponent
+    AddCarComponent,
+    QuoteComponent,
+    ServicesComponent,
+    AdviceComponent,
+    AppointmentsComponent
   ],
   imports: [
     BrowserModule,

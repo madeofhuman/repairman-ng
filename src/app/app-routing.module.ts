@@ -9,6 +9,10 @@ import { AuthGuard } from './auth.guard';
 import { OverviewComponent } from './dashboard/overview/overview.component';
 import { LoginSigninGuard } from './login-signin.guard';
 import { AddCarComponent } from './car/add-car/add-car.component';
+import { QuoteComponent } from './dashboard/quote/quote.component';
+import { ServicesComponent } from './dashboard/services/services.component';
+import { AdviceComponent } from './dashboard/advice/advice.component';
+import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
 
 const routes: Routes = [
   {
@@ -37,6 +41,22 @@ const routes: Routes = [
       {
         path: 'cars/new',
         component: AddCarComponent
+      },
+      {
+        path: 'quotes',
+        component: QuoteComponent
+      },
+      {
+        path: 'services',
+        component: ServicesComponent
+      },
+      {
+        path: 'advice',
+        component: AdviceComponent
+      },
+      {
+        path: 'appointment',
+        component: AppointmentsComponent
       }
     ]
   },

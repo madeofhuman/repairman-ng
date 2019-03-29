@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Car } from '../shared/models';
+import { Car, Quote } from '../shared/models';
 import { tap, catchError } from 'rxjs/operators';
 
 const APIEndPoint = environment.APIEndPoint;
@@ -41,6 +41,13 @@ export class CarService {
     return this.http.delete<Car>(`${this.carRoute}/${selectedCar.id}`, httpOptions).pipe(
       tap(_ => this.log('Car was successfully deleted')),
       catchError(this.handleError<Car>('Delete user car'))
+    );
+  }
+
+  addQuote(selectedQuote: string, carId: number): Observable<Quote> {
+    return this.http.post<Quote>(`${this.carRoute}/${carId}/quotes`, selectedQuote, httpOptions).pipe(
+      tap(_ => this.log('Quote was successfully added')),
+      catchError(this.handleError<Quote>('Add quote'))
     );
   }
 

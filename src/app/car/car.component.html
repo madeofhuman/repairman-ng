@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div *ngIf="!cars || cars.length === 0" class="container">
+<div *ngIf="!cars || !cars.length ||(cars.data && !cars.data.length)" class="container">
   <div class="jumbotron">
     <hr class="my-4">
     <p>You currently have <strong>0</strong> cars registered</p>
@@ -21,8 +21,8 @@
   </div>
 </div>
 
-<div *ngIf="cars" [@postStagger]="cars">
-  <div *ngFor="let car of cars" class="pt-2" style="cursor: pointer;" (click)="carDetails(car)">
+<div *ngIf="cars && cars.length" [@postStagger]="cars">
+  <div *ngFor="let car of cars" class="pt-2" style="cursor: pointer;">
       <div class="card mb-3" >
         <div class="row no-gutters">
           <div class="col-md-4">
@@ -30,10 +30,23 @@
           </div>
           <div class="col-md-6">
             <div class="card-body">
-              <p class="card-text">{{car.make}}</p>
-              <h5 class="card-title">{{car.make}}</h5>
-              <p class="card-text">{{car.trim}}</p>
-              <p class="card-text">Added <small class="text-muted">{{ car.created_at | timeAgo}}</small></p>
+
+              <div class="row">
+
+                  <div class="col-md-19">
+                    <p class="card-text">{{car.make}}</p>
+                    <h5 class="card-title">{{car.make}}</h5>
+                    <p class="card-text">{{car.trim}}</p>
+                    <p class="card-text">Added <small class="text-muted">{{ car.created_at | timeAgo}}</small></p>
+                  </div>
+                  <div class="col-md-2">
+                    <i class="material-icons">
+                      edit
+                    </i>
+                  </div>
+
+              </div>
+
             </div>
           </div>
           <div class="col-md-2">

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { CarService } from '../car.service';
-import { Car } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-add-car',

@@ -65,10 +65,6 @@ export class CarComponent implements OnInit {
       });
   }
 
-  carDetails(car: Car): void {
-    console.log(car);
-  }
-
   removeCar(selectedCar: Car): void {
     this.carService.removeCar(selectedCar)
       .subscribe(() => {

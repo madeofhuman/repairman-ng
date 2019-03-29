@@ -29,7 +29,16 @@ export interface Car {
   year: number;
   model: string;
   trim: string;
+  quotes?: Quote[];
   created_by?: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface Quote {
+  id?: number;
+  car_id?: number;
+  descripiton: string;
   created_at?: string;
   updated_at?: string;
 }
