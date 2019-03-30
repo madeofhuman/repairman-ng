@@ -43,3 +43,37 @@
 .banner .btn-group a:active {
   box-shadow: 0 0 0 9999px rgba(197, 164, 126, .25);
 }
+
+.row {
+  margin-bottom: 40px;
+}
+
+.card {
+  border: none !important;
+
+  img {
+    height: 90px;
+  }
+}
+
+.service-title {
+  h3 {
+    color: #bbb;
+    text-align: center;
+    padding: 10px 0 25px 0;
+    margin-bottom: 20px;
+  }
+}
+
+.model-btn {
+  color: #bbb;
+  border: 1px solid #bbb;
+  border-radius: 50px;
+  font-size: 16px;
+  width: 100%;
+
+  &:hover {
+    border: 1px solid #000;
+    color: #000;
+  }
+}
