@@ -45,6 +45,7 @@
             <button
             class="btn btn-default btn-block"
             (click)="submitForm(email, password)">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Login
           </button>
           </form>

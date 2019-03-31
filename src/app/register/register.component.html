@@ -78,6 +78,7 @@
           <button
             class="btn btn-default btn-block"
             (click)="submitForm(userName, email, password, password_confirm)">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Sign up
           </button>
         </form>

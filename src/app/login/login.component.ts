@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   userEmail: string;
   userPassword: string;
   userConfirmPassword: string;
+  loading: boolean;
 
   constructor(
   private authService: AuthService,
@@ -36,15 +37,18 @@ export class LoginComponent implements OnInit {
       email: email.value,
       password: password.value
     });
+    this.loading = true;
 
     this.authService.loginUser(userCredentials).subscribe((response) => {
       if (response) {
+        this.loading = false;
         const username = response.user_info.name;
         localStorage.setItem('auth_token', response.auth_token);
         localStorage.setItem('auth_user', JSON.stringify(response.user_info));
         this.router.navigate(['/dashboard']);
         this.displaySuccessMessage('Login Successful');
       } else {
+        this.loading = false;
         this.displayErrorMessage('Invalid credentials' );
         return false;
       }

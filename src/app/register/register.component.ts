@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   userEmail: string;
   userPassword: string;
   userConfirmPassword: string;
+  loading: boolean;
 
   constructor(
     private authService: AuthService,
@@ -42,10 +43,12 @@ export class RegisterComponent implements OnInit {
       password: password.value,
       password_confirmation: confirmPassword.value
     });
+    this.loading = true;
 
     this.authService.registerUser(userObject).subscribe((response) => {
       if (response) {
         if (response.status === 201) {
+          this.loading = false;
           const name = response.user_info.name;
           localStorage.setItem('auth_token', response.auth_token);
           localStorage.setItem('auth_user', JSON.stringify(response.user_info));
@@ -54,11 +57,11 @@ export class RegisterComponent implements OnInit {
 
         } else if (response.status === 200) {
           this.displayErrorMessage('This username/email already exists in the database' );
-          return false;
+          return this.loading = false;
         }
       } else {
         this.displayErrorMessage('There was an error creating your account. Please try again' );
-        return false;
+        return this.loading = false;
       }
     });
 
