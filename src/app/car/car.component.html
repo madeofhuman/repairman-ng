@@ -22,7 +22,7 @@
 </div>
 
 <div *ngIf="cars && cars.length" [@postStagger]="cars">
-  <div *ngFor="let car of cars" class="pt-2" style="cursor: pointer;">
+  <div *ngFor="let car of cars" class="pt-2">
       <div class="card mb-3" >
         <div class="row no-gutters">
           <div class="col-md-4">
@@ -33,15 +33,58 @@
 
               <div class="row">
 
-                  <div class="col-md-19">
+                  <div *ngIf="!isEditingCar || (isEditingCar && +isEditingCar.id !== +car.id)" class="col-md-9">
                     <p class="card-text">{{car.make}}</p>
                     <h5 class="card-title">{{car.model}}</h5>
                     <p class="card-text">{{car.trim}}</p>
                     <p class="card-text">Added <small class="text-muted">{{ car.created_at | timeAgo}}</small></p>
                   </div>
+                  <div *ngIf="isEditingCar && isEditingCar.id === car.id"  class="col-md-9">
+                    <form class="form">
+
+                    </form>
+                    <input
+                      minlength="3"
+                      required
+                      pattern="[A-Za-z0-9-_]+" #carMake="ngModel" [(ngModel)]="make" class="form-control" type="text" placeholder="Car Make" value="{{car.make}}"><br/>
+                    
+                    <input
+                      required
+                      minlength="2"
+                      pattern="[A-Za-z0-9\s]+"
+                      #carModel="ngModel"
+                      [(ngModel)]="model" name="model" class="form-control" type="text" placeholder="Car Model" value="{{car.model}}"><br>
+                    
+                    <input
+                      required
+                      minlength="2"
+                      pattern="[0-9A-Za-z ]+"
+                      #carTrim="ngModel"
+                      [(ngModel)]="trim"
+                      name="trim"
+                      class="form-control" type="text" placeholder="Car Trim" value="{{car.trim}}">
+                  </div>
                   <div class="col-md-2">
-                    <i class="material-icons">
+                    <i
+                      *ngIf="!isEditingCar || (isEditingCar && +isEditingCar.id !== +car.id)"
+                      class="material-icons"
+                      style="cursor: pointer;"
+                      (click)="edit(car)">
                       edit
+                    </i>
+                    <i
+                      *ngIf="isEditingCar && isEditingCar.id === car.id"
+                      class="material-icons"
+                      style="cursor: pointer;"
+                      (click)="saveEdit(+car.id, make, model, trim)">
+                      save
+                    </i>
+                    <i
+                      *ngIf="isEditingCar && isEditingCar.id === car.id"
+                      class="material-icons"
+                      style="cursor: pointer;"
+                      (click)="closeEdit(carMake, carModel, carTrim)">
+                      close
                     </i>
                   </div>
 
@@ -51,7 +94,7 @@
           </div>
           <div class="col-md-2">
             <div class="card-body">
-                <i class="material-icons" (click)="removeCar(car)" matTooltip="Info about the action">
+                <i class="material-icons" (click)="removeCar(car)" matTooltip="Info about the action" style="cursor: pointer;">
                   delete
                 </i>
             </div>

@@ -46,6 +46,10 @@ export class CarComponent implements OnInit {
 
   private notifier: NotifierService;
   cars: Car[];
+  isEditingCar: Car = null;
+  make: string;
+  trim: string;
+  model: string;
 
   constructor(
     private carService: CarService,
@@ -75,6 +79,47 @@ export class CarComponent implements OnInit {
         this.cars = this.cars.filter((car) => selectedCar.id !== car.id);
         this.notifier.notify('success', `Your ${selectedCar.make} has been successfully deleted.`);
       });
+  }
+
+  edit(car: Car): void {
+    this.isEditingCar = car;
+    this.make = car.make;
+    this.model = car.model;
+    this.trim = car.trim;
+  }
+
+  saveEdit(id: number, make, model, trim): void {
+    this.isEditingCar = null;
+    console.log(make, trim, model);
+    if (!(make && model && trim)) {
+      return this.notifier.notify('error', 'The form contains empty fields');
+    }
+
+    const carObject = JSON.stringify({
+      make,
+      model,
+      trim
+    });
+
+    this.carService.editCar(id, carObject)
+      .subscribe(() => {
+        this.notifier.notify('success', 'Car details updated');
+        this.cars = this.cars.map((car) => {
+          if (car.id === id) {
+            car.make = make;
+            car.model = model;
+            car.trim = trim;
+          }
+          return car;
+        });
+      });
+  }
+
+  closeEdit(make, model, trim): void {
+    this.make = '';
+    this.model = '';
+    this.trim = '';
+    this.isEditingCar = null;
   }
 
 }

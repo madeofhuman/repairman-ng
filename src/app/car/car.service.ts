@@ -36,6 +36,12 @@ export class CarService {
     );
   }
 
+  editCar(carId: number, carObject: string): Observable<Car> {
+    return this.http.put<Car>(`${this.carRoute}/${carId}`, carObject, httpOptions).pipe(
+      tap(_ => this.log('Your car has been updated')),
+      catchError(this.handleError<Car>('Update user car'))
+    );
+  }
 
   removeCar(selectedCar: Car): Observable<Car> {
     return this.http.delete<Car>(`${this.carRoute}/${selectedCar.id}`, httpOptions).pipe(
