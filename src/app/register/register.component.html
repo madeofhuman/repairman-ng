@@ -1,88 +1,90 @@
-<div class="row pt-5">
-  <div class="col-md-6 mx-auto">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="mb-0">Register</h3>
-      </div>
-      <div class="card-body">
-        <form class="form">
-          <div class="form-group">
-            <label for="userName"></label>
-            <input
-              required minlength="5"
-              pattern="[a-zA-Z0-9]+([-_][a-zA-Z0-9]+)*"
-              [(ngModel)]="name"
-              #userName="ngModel"
-              name="userName"
-              id="userName"
-              type="text"
-              class="form-control"
-              placeholder="Username">
-            <div *ngIf="userName.touched && !userName.valid" class="alert alert-danger">
-              <div *ngIf="userName.errors.required">Username field is required</div>
-              <div *ngIf="userName.errors.minlength">
-                Username must be atleast {{userName.errors.minlength.requiredLength}} characters long
-              </div>
-              <div *ngIf="userName.errors.pattern">
-                Username may consist of alphanumeric characters and separating dashes or underscores.<br>
-                Username patterns include: `Jigs009`, `Jig_saw`<br>
-                Not: `_Jigsaw`, `Jig#$001` or `Jigsaw-`
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for=""></label>
-            <input
-              required
-              pattern="\S+@\S+\.\S+"
-              [(ngModel)]="userEmail"
-              #email="ngModel"
-              name="email"
-              id="email"
-              type="email"
-              class="form-control"
-              placeholder="Email">
-            <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
-                <div *ngIf="email.errors.required">Email field is required</div>
-                <div *ngIf="email.errors.pattern">Invalid email</div>
-            </div>
-          </div>
-
+<div class="container-fluid">
+  <div class="row pt-5">
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="mb-0">Register</h3>
+        </div>
+        <div class="card-body">
+          <form class="form">
             <div class="form-group">
-              <label for=""></label>
+              <label for="userName"></label>
               <input
-                required minlength="6"
-                [(ngModel)]="userPassword"
-                #password="ngModel"
-                name="password"
-                id="password"
-                type="password"
+                required minlength="5"
+                pattern="[a-zA-Z0-9]+([-_][a-zA-Z0-9]+)*"
+                [(ngModel)]="name"
+                #userName="ngModel"
+                name="userName"
+                id="userName"
+                type="text"
                 class="form-control"
-                placeholder="Password">
-                <div *ngIf="password.touched && !password.valid" class="alert alert-danger">
-                    <div *ngIf="password.errors.required">Password field is required</div>
-                    <div *ngIf="password.errors.minlength">Password must be at least {{ password.errors.minlength.requiredLength }} characters long</div>
+                placeholder="Username">
+              <div *ngIf="userName.touched && !userName.valid" class="alert alert-danger">
+                <div *ngIf="userName.errors.required">Username field is required</div>
+                <div *ngIf="userName.errors.minlength">
+                  Username must be atleast {{userName.errors.minlength.requiredLength}} characters long
                 </div>
+                <div *ngIf="userName.errors.pattern">
+                  Username may consist of alphanumeric characters and separating dashes or underscores.<br>
+                  Username patterns include: `Jigs009`, `Jig_saw`<br>
+                  Not: `_Jigsaw`, `Jig#$001` or `Jigsaw-`
+                </div>
+              </div>
             </div>
-
+  
             <div class="form-group">
               <label for=""></label>
               <input
-                [(ngModel)]="userConfirmPassword"
-                #password_confirm="ngModel"
-                name="password_confirm"
-                id="password_confirm" type="password" class="form-control" placeholder="Confirm pasword">
+                required
+                pattern="\S+@\S+\.\S+"
+                [(ngModel)]="userEmail"
+                #email="ngModel"
+                name="email"
+                id="email"
+                type="email"
+                class="form-control"
+                placeholder="Email">
+              <div *ngIf="email.touched && !email.valid" class="alert alert-danger">
+                  <div *ngIf="email.errors.required">Email field is required</div>
+                  <div *ngIf="email.errors.pattern">Invalid email</div>
+              </div>
             </div>
-
-          <button
-            class="btn btn-default btn-block"
-            (click)="submitForm(userName, email, password, password_confirm)">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Sign up
-          </button>
-        </form>
+  
+              <div class="form-group">
+                <label for=""></label>
+                <input
+                  required minlength="6"
+                  [(ngModel)]="userPassword"
+                  #password="ngModel"
+                  name="password"
+                  id="password"
+                  type="password"
+                  class="form-control"
+                  placeholder="Password">
+                  <div *ngIf="password.touched && !password.valid" class="alert alert-danger">
+                      <div *ngIf="password.errors.required">Password field is required</div>
+                      <div *ngIf="password.errors.minlength">Password must be at least {{ password.errors.minlength.requiredLength }} characters long</div>
+                  </div>
+              </div>
+  
+              <div class="form-group">
+                <label for=""></label>
+                <input
+                  [(ngModel)]="userConfirmPassword"
+                  #password_confirm="ngModel"
+                  name="password_confirm"
+                  id="password_confirm" type="password" class="form-control" placeholder="Confirm pasword">
+              </div>
+  
+            <button
+              class="btn btn-default btn-block"
+              (click)="submitForm(userName, email, password, password_confirm)">
+              <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Sign up
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
+  </div>  
 </div>

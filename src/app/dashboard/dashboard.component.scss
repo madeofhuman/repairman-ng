@@ -7,7 +7,7 @@
 
 #container {
 	display: grid;
-	grid-template-columns: 300px auto;
+	grid-template-columns: 200px auto;
 	height: 100%;
 
 	#content {
@@ -45,5 +45,11 @@
 				}
 			}
 		}
+	}
+}
+
+@media (max-width: 768px) { 
+	#container {
+		display: block;
 	}
 }

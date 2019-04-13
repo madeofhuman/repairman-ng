@@ -26,6 +26,38 @@
         </a>
       </li>
     </ul>
+    <ul *ngIf="isLoggedIn()" id="dashboard-mini" class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/dashboard">
+          <i class="material-icons">dashboard</i> <span>Overview</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard/cars" routerLinkActive="active">
+          <i class="material-icons">directions_car</i><span>My Cars</span>
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/dashboard/appointment" routerLinkActive="active">
+          <i class="material-icons">meeting_room</i><span>Appointments</span>
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/dashboard/quotes" routerLinkActive="active">
+          <i class="material-icons">format_quote</i><span>Get a quote</span>
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/dashboard/services" routerLinkActive="active">
+          <i class="material-icons">build</i><span>Services</span>
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" routerLink="/dashboard/advice" routerLinkActive="active">
+          <i class="material-icons">call</i><span>Get advice</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>
 <router-outlet></router-outlet>

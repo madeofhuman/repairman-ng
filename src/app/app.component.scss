@@ -1,0 +1,9 @@
+#dashboard-mini {
+  display: none;
+}
+
+@media (max-width: 768px) {
+	#dashboard-mini {
+    display: block;
+	}
+}

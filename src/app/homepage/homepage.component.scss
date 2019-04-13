@@ -77,3 +77,39 @@
     color: #000;
   }
 }
+
+@media (max-width: 768px) {
+  .banner {
+    padding: 100px 5px;
+
+    .banner-group {
+      .title {
+        font-size: 24px;
+        padding: 10px 0;
+      }
+    }
+  }
+
+  .service-title {
+    h3 {
+      font-size: 18px;
+      padding: 5px;
+    }
+  }
+	.card {
+    display: grid;
+    grid-template-columns: 20% 70%;
+    img {
+      height: 60px;
+      width: 60px;
+      margin: auto auto;
+    }
+    .card-body {
+      width: 60%;
+    }
+  }
+
+  .mini-hide {
+    display: none;
+  }
+}

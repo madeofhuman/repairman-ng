@@ -4,24 +4,14 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { NotifierService } from 'angular-notifier';
 
 import { of } from 'rxjs';
-import { CarComponent } from '../car/car.component';
-import { AppRoutingModule } from '../app-routing.module';
-import { QuoteComponent } from './quote/quote.component';
-import { LoginComponent } from '../login/login.component';
 import { DashboardComponent } from './dashboard.component';
-import { AdviceComponent } from './advice/advice.component';
-import { OverviewComponent } from './overview/overview.component';
 import { SideBarComponent } from '../side-bar/side-bar.component';
-import { ServicesComponent } from './services/services.component';
-import { RegisterComponent } from '../register/register.component';
-import { AddCarComponent } from '../car/add-car/add-car.component';
-import { HomepageComponent } from '../homepage/homepage.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('DashboardComponent', () => {
+fdescribe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let serviceStub: any;
+  let serviceStub: Partial<any>;
 
   beforeEach(async(() => {
     serviceStub = {
@@ -35,29 +25,15 @@ describe('DashboardComponent', () => {
       declarations: [
         DashboardComponent,
         SideBarComponent,
-        RegisterComponent,
-        LoginComponent,
-        OverviewComponent,
-        CarComponent,
-        AddCarComponent,
-        QuoteComponent,
-        ServicesComponent,
-        AdviceComponent,
-        AppointmentsComponent,
-        HomepageComponent,
         TimeAgoPipe
       ],
-      imports: [ AppRoutingModule, FormsModule ],
+      imports: [ RouterTestingModule, FormsModule ],
       providers: [{ provide: NotifierService, useValue: serviceStub }]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-
     const store = {};
 
     spyOn(localStorage, 'setItem').and.callFake((key: string, value: string) => {
@@ -73,6 +49,10 @@ describe('DashboardComponent', () => {
       name: 'jigsaw',
       email: 'email'
     }));
+
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {

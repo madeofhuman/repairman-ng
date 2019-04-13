@@ -20,3 +20,10 @@
   background-color: #00a8ff;
   color: #fff;
 }
+
+@media (max-width: 768px) {
+	.overview {
+    padding: 0 15px;
+    text-align: center;
+  }
+}
