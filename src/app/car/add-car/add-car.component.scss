@@ -3,3 +3,13 @@
   background-color: #00a8ff;
   color: #fff;
 }
+
+.add-car {
+  width: 50%;
+}
+
+@media (max-width: 768px) { 
+	.add-car {
+    width: 100%;
+  }
+}
