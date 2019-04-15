@@ -1,4 +1,4 @@
-<div *ngIf="carQuotes && carQuotes.length" class="container">
+<div *ngIf="carQuotes && carQuotes.length" class="container-fluid">
   <div class="jumbotron">
     <h4>My quotes</h4>
     <p>You currently have <strong>{{ carQuotes.length }}</strong> quote{{carQuotes.length === 1 ? '' : "'s"}}</p>
@@ -11,7 +11,7 @@
         <h4 class="add-car-header">Get a quote</h4>
       </div>
       <div class="card-body">
-        <div class="mx-auto" style="width:50%;">
+        <div class="mx-auto add-quote">
             <form class="form" *ngIf="cars && cars.length > 0">
               <div class="form-group">
                 <label for="car-model">Select your car</label>

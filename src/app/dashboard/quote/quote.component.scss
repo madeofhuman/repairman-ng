@@ -2,3 +2,16 @@
   background-color: #00a8ff;
   color: #fff;
 }
+
+.add-quote {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .jumbotron {
+    width: 90%;
+  }
+	.add-quote {
+    width: 90%;
+  }
+}
