@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Car } from '../shared/models';
+import { Car } from '../../shared/models';
 import { CarService } from './car.service';
 import { NotifierService } from 'angular-notifier';
 import {
@@ -62,10 +62,19 @@ export class CarComponent implements OnInit {
     this.getCars();
   }
 
+  /**
+   * Verify the container for our car objects
+   * @param car - car objects
+   * @returns boolean
+   */
   checkCarStatus(car: any): boolean {
     return Array.isArray(car);
   }
 
+  /**
+   * Set a users' car after subscription to
+   * our car service
+   */
   getCars(): void {
     this.carService.getCars()
       .subscribe((cars) => {
@@ -73,6 +82,10 @@ export class CarComponent implements OnInit {
       });
   }
 
+  /**
+   * Delete a user car
+   * @param selectedCar -  car selected for deletion
+   */
   removeCar(selectedCar: Car): void {
     this.carService.removeCar(selectedCar)
       .subscribe(() => {
@@ -81,6 +94,10 @@ export class CarComponent implements OnInit {
       });
   }
 
+  /**
+   * Set car undergoing edits
+   * @param car - A single user car object
+   */
   edit(car: Car): void {
     this.isEditingCar = car;
     this.make = car.make;
@@ -88,9 +105,16 @@ export class CarComponent implements OnInit {
     this.trim = car.trim;
   }
 
-  saveEdit(id: number, make, model, trim): void {
+  /**
+   * Persist user changes upon save edit information
+   * @param id - car id
+   * @param make - car make
+   * @param model - car model
+   * @param trim - car trim
+   * @returns void
+   */
+  saveEdit(id: number, make: string, model: string, trim: string): void {
     this.isEditingCar = null;
-    console.log(make, trim, model);
     if (!(make && model && trim)) {
       return this.notifier.notify('error', 'The form contains empty fields');
     }
@@ -115,7 +139,14 @@ export class CarComponent implements OnInit {
       });
   }
 
-  closeEdit(make, model, trim): void {
+  /**
+   * Close the edit interface and reset edit state
+   * @param make - car make
+   * @param model - car model
+   * @param trim - car trim
+   * @returns void
+   */
+  closeEdit(make: any, model: any, trim: any): void {
     this.make = '';
     this.model = '';
     this.trim = '';

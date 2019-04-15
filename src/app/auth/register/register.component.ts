@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { Component, OnInit } from '@angular/core';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -12,21 +13,28 @@ export class RegisterComponent implements OnInit {
 
   private readonly notifier: NotifierService;
   name: string;
+  loading: boolean;
   userEmail: string;
   userPassword: string;
   userConfirmPassword: string;
-  loading: boolean;
 
   constructor(
-    private authService: AuthService,
     private router: Router,
+    private authService: AuthService,
     private notifierService: NotifierService
     ) {
       this.notifier = notifierService;
     }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
+    /**
+     * Submit new user credentials and persist user information in the database
+     * @param username - users preferred name
+     * @param email - users email
+     * @param password - users password
+     * @param confirmPassword - user password confirmation
+     */
   submitForm(username: any, email: any, password: any, confirmPassword: any) {
     if (!(username.valid && email.valid && password.valid)) {
       this.displayErrorMessage('This form contains invalid fields' );
@@ -67,10 +75,20 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  /**
+   * Display error message
+   * @param message - error message
+   * @returns void
+   */
   displayErrorMessage(message: string): void {
     this.notifier.notify( 'error', message);
   }
 
+  /**
+   * Display success message
+   * @param message - success message
+   * @returns void
+   */
   displaySuccessMessage(message: string): void {
     this.notifier.notify('success', message);
   }

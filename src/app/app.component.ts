@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
+
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,10 @@ export class AppComponent {
     this.notifier = notifierService;
   }
 
+  /**
+   * Logout function - remove user credentials from local
+   * storage and redirect the user to the homepage
+   */
   logOut(): void {
     this.notifier.hideAll();
     localStorage.removeItem('auth_token');
@@ -28,6 +33,10 @@ export class AppComponent {
     this.notifier.notify('info', 'You have successfully logged out of the platform!');
   }
 
+  /**
+   * Verify user login status
+   * @returns boolean by subscribing to our authentication service
+   */
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }

@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+
+import { AuthGuard } from './auth/auth.guard';
+import { CarComponent } from './dashboard/car/car.component';
+import { LoginSigninGuard } from './auth/login-signin.guard';
+import { LoginComponent } from './auth/login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { CarComponent } from './car/car.component';
-import { AuthGuard } from './auth.guard';
-import { OverviewComponent } from './dashboard/overview/overview.component';
-import { LoginSigninGuard } from './login-signin.guard';
-import { AddCarComponent } from './car/add-car/add-car.component';
 import { QuoteComponent } from './dashboard/quote/quote.component';
-import { ServicesComponent } from './dashboard/services/services.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdviceComponent } from './dashboard/advice/advice.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { AddCarComponent } from './dashboard/car/add-car/add-car.component';
+import { OverviewComponent } from './dashboard/overview/overview.component';
+import { ServicesComponent } from './dashboard/services/services.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
 
 const routes: Routes = [

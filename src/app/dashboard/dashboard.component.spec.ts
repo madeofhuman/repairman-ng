@@ -5,7 +5,7 @@ import { NotifierService } from 'angular-notifier';
 
 import { of } from 'rxjs';
 import { DashboardComponent } from './dashboard.component';
-import { SideBarComponent } from '../side-bar/side-bar.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
 fdescribe('DashboardComponent', () => {

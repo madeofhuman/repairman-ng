@@ -27,7 +27,15 @@ export class AddCarComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitForm(make: any, year: any, model: any, trim: any) {
+  /**
+   * Submit new car credentials and add a new car to users collection
+   * @param make - car make
+   * @param year - car year
+   * @param model - car model
+   * @param trim - car trim
+   * @returns void
+   */
+  submitForm(make: any, year: any, model: any, trim: any): void {
     if (!(make.valid && year.valid && model.valid && trim.valid)) {
       return this.notifier.notify('error', 'This form contains invalid entries!');
     }
@@ -46,6 +54,10 @@ export class AddCarComponent implements OnInit {
       });
   }
 
+  /**
+   * Go back one level up the browser location stack
+   * @returns void
+   */
   goBack(): void {
     this.router.navigate(['dashboard/cars']);
   }

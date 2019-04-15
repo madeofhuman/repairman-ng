@@ -1,12 +1,12 @@
+import { of } from 'rxjs';
+import { TimeAgoPipe } from 'time-ago-pipe';
+import { DebugElement } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarComponent } from './car.component';
-import { TimeAgoPipe } from 'time-ago-pipe';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { NotifierService } from 'angular-notifier';
-import { of } from 'rxjs';
-import { DebugElement } from '@angular/core';
 
 fdescribe('CarComponent', () => {
   let component: CarComponent;

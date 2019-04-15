@@ -1,11 +1,17 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Car, Quote } from '../shared/models';
+import { Injectable } from '@angular/core';
 import { tap, catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { Car, Quote } from '../../shared/models';
+import { environment } from '../../../environments/environment';
 
 const APIEndPoint = environment.APIEndPoint;
+
+/**
+ * Get header information before each request
+ * @returns a new set of HTTP Headers
+ */
 const httpOptions = () => {
   return {
     headers: new HttpHeaders({
@@ -24,6 +30,10 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Get all the cars that belong to a user
+   * @returns an observable array of a uses car(s)
+   */
   getCars() {
     return this.http.get<Car[]>(this.carRoute, httpOptions()).pipe(
       tap(_ => this.log('Car successfully retrieved!')),
@@ -31,6 +41,11 @@ export class CarService {
     );
   }
 
+  /**
+   * Add a new car to a users collection
+   * @param carObject - new car object
+   * @returns the new car object as an observable
+   */
   addCar(carObject: string): Observable<Car> {
     return this.http.post<Car>(this.carRoute, carObject, httpOptions()).pipe(
       tap(_ => this.log('Car was successfully added')),
@@ -38,6 +53,12 @@ export class CarService {
     );
   }
 
+  /**
+   * Edit a users car
+   * @param carId - car id
+   * @param carObject - stingified car object
+   * @returns the edited car as an observable
+   */
   editCar(carId: number, carObject: string): Observable<Car> {
     return this.http.put<Car>(`${this.carRoute}/${carId}`, carObject, httpOptions()).pipe(
       tap(_ => this.log('Your car has been updated')),
@@ -45,6 +66,11 @@ export class CarService {
     );
   }
 
+  /**
+   * Remove a user car
+   * @param selectedCar - car object for deletion
+   * @returns a deleted car as an observable
+   */
   removeCar(selectedCar: Car): Observable<Car> {
     return this.http.delete<Car>(`${this.carRoute}/${selectedCar.id}`, httpOptions()).pipe(
       tap(_ => this.log('Car was successfully deleted')),
@@ -52,6 +78,12 @@ export class CarService {
     );
   }
 
+  /**
+   * Add a new quote on a users car
+   * @param selectedQuote - New quote information
+   * @param carId - car Id
+   * @returns a newly added quotes as an observable
+   */
   addQuote(selectedQuote: string, carId: number): Observable<Quote> {
     return this.http.post<Quote>(`${this.carRoute}/${carId}/quotes`, selectedQuote, httpOptions()).pipe(
       tap(_ => this.log('Quote was successfully added')),
@@ -79,6 +111,11 @@ export class CarService {
     };
   }
 
+  /**
+   * Log information to the user console
+   * @param message - log message
+   * @returns void
+   */
   log(message: string): void {
     console.log(message);
   }

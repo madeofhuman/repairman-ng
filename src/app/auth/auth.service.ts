@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { tap, map, catchError } from 'rxjs/operators';
-import { UserResponse } from './shared/models';
-import { environment } from '../environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { UserResponse } from '../shared/models';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,6 +24,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Register function
+   * @param user - stringified user object
+   * @returns a registered user as an observable object
+   */
   registerUser(user: string): Observable<UserResponse> {
     return this.http.post<any>(this.registrationRoute, user, httpOptions).pipe(
       tap(_ => this.log('User was successfully registered')),
@@ -30,6 +36,11 @@ export class AuthService {
     );
   }
 
+  /**
+   * Log in function
+   * @param user - stringified user object
+   * @returns a logged id user object as an observable
+   */
   loginUser(user: string): Observable<UserResponse> {
     return this.http.post<any>(this.loginRoute, user, httpOptions).pipe(
       tap(_ => this.log('User was successfully signed in')),
@@ -51,10 +62,19 @@ export class AuthService {
     };
   }
 
+  /**
+   * Check user login status
+   * @returns boolean
+   */
   isLoggedIn(): boolean {
     return !!localStorage.getItem('auth_token');
   }
 
+  /**
+   * Log custom messages to the console
+   * @param message - custom message
+   * @returns void
+   */
   log(message: string): void {
     console.log(message);
   }

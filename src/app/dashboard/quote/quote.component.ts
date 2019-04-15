@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CarService } from 'src/app/car/car.service';
 import { Car, Quote } from 'src/app/shared/models';
 import { NotifierService } from 'angular-notifier';
+import { CarService } from '../car/car.service';
 
 @Component({
   selector: 'app-quote',
@@ -27,6 +27,11 @@ export class QuoteComponent implements OnInit {
     this.getUserCars();
   }
 
+  /**
+   * Set a users cars and quotes after subscribing
+   * to our car service
+   * @return void
+   */
   getUserCars(): void {
     this.carService.getCars()
       .subscribe((cars) => {
@@ -35,6 +40,12 @@ export class QuoteComponent implements OnInit {
       });
   }
 
+  /**
+   * Set user car quotes in quotes section of
+   * the dashboard
+   * @param cars - An array of car objects
+   * @returns void
+   */
   setQuotes(cars: Car[]): void {
     cars = Array.isArray(cars) ? cars : [];
     cars.map((car) => {
@@ -42,10 +53,20 @@ export class QuoteComponent implements OnInit {
     });
   }
 
+  /**
+   * Navigate to the dashboard
+   * @returns - void
+   */
   visitDashboard() {
     this.router.navigate(['/dashboard']);
   }
 
+  /**
+   * Submit a new car quote
+   * @param car - User car object
+   * @param desc - mileage/description
+   * @returns Subscription from car-quote service
+   */
   submitForm(car: any, desc: any) {
     if (!(
       car.value && typeof +car.value === 'number' && +car.value !== 0

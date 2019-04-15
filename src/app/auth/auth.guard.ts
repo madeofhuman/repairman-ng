@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { AuthService } from './auth.service';
 import { NotifierService } from 'angular-notifier';
+import { CanActivate, Router } from '@angular/router';
+
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -10,6 +11,7 @@ import { NotifierService } from 'angular-notifier';
 export class AuthGuard implements CanActivate {
 
   private readonly notifier: NotifierService;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -18,6 +20,10 @@ export class AuthGuard implements CanActivate {
     this.notifier = notifierService;
   }
 
+  /**
+   * canActivate interface implementation
+   * @returns boolean based on log in status of a user
+   */
   canActivate(): boolean {
     if (this.authService.isLoggedIn()) {
       return true;

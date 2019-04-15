@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
+import { Component, OnInit } from '@angular/core';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,10 @@ export class LoginComponent implements OnInit {
 
   private readonly notifier: NotifierService;
   name: string;
+  loading: boolean;
   userEmail: string;
   userPassword: string;
   userConfirmPassword: string;
-  loading: boolean;
 
   constructor(
   private authService: AuthService,
@@ -24,9 +25,13 @@ export class LoginComponent implements OnInit {
     this.notifier = notifierService;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  /**
+   * Submit user credentials and log user into the platform
+   * @param email - user email
+   * @param password - user password
+   */
   submitForm(email: any, password: any) {
     if (!(email.valid && password.valid)) {
       this.displayErrorMessage('This form contains invalid fields' );
@@ -55,10 +60,20 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Display error message
+   * @param message - error message
+   * @returns void
+   */
   displayErrorMessage(message: string): void {
     this.notifier.notify( 'error', message);
   }
 
+  /**
+   * Display success message
+   * @param message - success message
+   * @returns void
+   */
   displaySuccessMessage(message: string): void {
     this.notifier.notify('success', message);
   }
