@@ -5,9 +5,16 @@ import { RequestsComponent } from './requests/requests.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { AdminSideBarComponent } from './admin-side-bar/admin-side-bar.component';
+import { AdminOverviewComponent } from './admin-overview/admin-overview.component';
 
 @NgModule({
-  declarations: [AdminComponent, RequestsComponent, SettingsComponent, AdminSideBarComponent],
+  declarations: [
+    AdminSideBarComponent,
+    AdminOverviewComponent,
+    AdminComponent,
+    RequestsComponent,
+    SettingsComponent,
+  ],
   imports: [
     CommonModule,
     AppRoutingModule,

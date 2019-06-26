@@ -1,0 +1,29 @@
+.overview {
+  background-color: #fff;
+  color: rgba(0,0,0,.5);
+  border-top: 1px solid #E6E9EC;
+
+  .overview-row {
+    padding: 10px 0;
+
+    .welcome-message {
+      padding-top: 15px;
+    }
+  }
+}
+
+.cars {
+  color: rgba(0,0,0,.5);
+}
+
+.btn.btn-more {
+  background-color: #00a8ff;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+	.overview {
+    padding: 0 15px;
+    text-align: center;
+  }
+}

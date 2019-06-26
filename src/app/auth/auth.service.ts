@@ -70,6 +70,14 @@ export class AuthService {
     return !!localStorage.getItem('auth_token');
   }
 
+    /**
+   * Check user admin status
+   * @returns boolean
+   */
+  isAdmin(): boolean {
+    return !!JSON.parse(localStorage.getItem('auth_user')).admin;
+  }
+
   /**
    * Log custom messages to the console
    * @param message - custom message

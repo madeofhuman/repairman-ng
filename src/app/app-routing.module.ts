@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './auth/auth.guard';
+import { AdminGuard } from './auth/admin.guard';
 import { CarComponent } from './dashboard/car/car.component';
 import { LoginSigninGuard } from './auth/login-signin.guard';
 import { LoginComponent } from './auth/login/login.component';
@@ -17,6 +18,7 @@ import { AppointmentsComponent } from './dashboard/appointments/appointments.com
 import { RequestsComponent } from './admin/requests/requests.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminOverviewComponent } from './admin/admin-overview/admin-overview.component';
 
 const routes: Routes = [
   {
@@ -67,12 +69,11 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
     children: [
       {
         path: '',
-        redirectTo: 'requests',
-        pathMatch: 'full'
+        component: AdminOverviewComponent,
       },
       {
         path: 'requests',
