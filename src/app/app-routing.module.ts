@@ -14,6 +14,9 @@ import { AddCarComponent } from './dashboard/car/add-car/add-car.component';
 import { OverviewComponent } from './dashboard/overview/overview.component';
 import { ServicesComponent } from './dashboard/services/services.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
+import { RequestsComponent } from './admin/requests/requests.component';
+import { SettingsComponent } from './admin/settings/settings.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -58,6 +61,26 @@ const routes: Routes = [
       {
         path: 'appointment',
         component: AppointmentsComponent
+      }
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'requests',
+        pathMatch: 'full'
+      },
+      {
+        path: 'requests',
+        component: RequestsComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
       }
     ]
   },

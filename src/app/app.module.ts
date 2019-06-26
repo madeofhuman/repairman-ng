@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     DashboardModule,
     HttpClientModule,
     AppRoutingModule,
+    AdminModule,
     BrowserAnimationsModule,
   ],
   providers: [],

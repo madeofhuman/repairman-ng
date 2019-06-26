@@ -5,3 +5,49 @@ body {
   width: 100%;
   font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 }
+
+nav.sidebar {
+	background: #2d2e2e;
+	height: 100%;
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+
+		li {
+
+			a {
+				padding: 20px;
+        display: block;
+				position: relative;
+				color: #A1A9B3;
+				display: block;
+				font-size: 14px;
+				line-height: 22px;
+				padding-right: 40px;
+
+				&:hover {
+					color: #fff;
+				}
+        
+        span {
+          margin: 8x 15px 0 20px;
+          padding: 0px 15px;
+          position: absolute;
+        }
+			}
+
+			.activated {
+				background-color: #00a8ff;
+				color: #fff;
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	nav.sidebar {
+		display: none;
+	}
+}
