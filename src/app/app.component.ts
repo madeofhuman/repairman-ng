@@ -41,4 +41,12 @@ export class AppComponent {
     return this.authService.isLoggedIn();
   }
 
+  /**
+   * Verify user admin status
+   * @returns boolean by subscribing to our authentication service
+   */
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
 }
