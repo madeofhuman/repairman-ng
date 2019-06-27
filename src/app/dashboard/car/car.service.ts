@@ -27,6 +27,9 @@ const httpOptions = () => {
 export class CarService {
 
   private carRoute = APIEndPoint + 'cars';
+  private adminRoutes = {
+    allCars: APIEndPoint + 'admin/cars',
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +39,17 @@ export class CarService {
    */
   getCars() {
     return this.http.get<Car[]>(this.carRoute, httpOptions()).pipe(
+      tap(_ => this.log('Car successfully retrieved!')),
+      catchError(this.handleError<Car[]>('Get user cars', []))
+    );
+  }
+
+  /**
+   * Get all the cars that exist on the system (admin)
+   * @returns an observable array of all cars
+   */
+  getAllCars() {
+    return this.http.get<Car[]>(this.adminRoutes.allCars, httpOptions()).pipe(
       tap(_ => this.log('Car successfully retrieved!')),
       catchError(this.handleError<Car[]>('Get user cars', []))
     );

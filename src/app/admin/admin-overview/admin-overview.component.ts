@@ -12,7 +12,7 @@ export class AdminOverviewComponent implements OnInit {
   userDetails: any = JSON.parse(localStorage.getItem('auth_user'));
   cars: Car[];
 
-  constructor(
+  constructor( 
     private carService: CarService
   ) { }
 
@@ -26,8 +26,11 @@ export class AdminOverviewComponent implements OnInit {
    * @returns void
    */
   getCars(): void {
-    this.carService.getCars()
-      .subscribe((cars) => this.cars = cars);
+    this.carService.getAllCars()
+      .subscribe((cars) => {
+        console.log('cars>>>', cars)
+        this.cars = cars;
+      });
   }
 
 }
