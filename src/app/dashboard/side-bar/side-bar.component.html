@@ -30,5 +30,11 @@
         <i class="material-icons">call</i><span>Get advice</span>
       </a>
     </li>
+    <hr>
+    <li *ngIf="isAdmin()">
+      <a routerLink="/admin" routerLinkActive="activated" [routerLinkActiveOptions]="{exact: true}">
+        <i class="material-icons">dashboard</i><span>Admin Dashboard</span>
+      </a>
+    </li>
   </ul>
 </nav>
