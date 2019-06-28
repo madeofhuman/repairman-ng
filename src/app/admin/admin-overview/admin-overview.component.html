@@ -21,7 +21,7 @@
     <hr class="my-4">
     <p>There are currently <strong>{{ cars.length || 0 }}</strong> cars registered:</p>
     <ul>
-      <li *ngFor="let car of cars">{{car.make}} {{car.model}} - {{car.trim}} by {{car.user.name}} ({{car.quotes.length || 0}} quotes)</li>
+      <li *ngFor="let car of cars">{{ carDetails(car) }}</li>
     </ul>
   </div>
 </div>

@@ -33,4 +33,9 @@ export class AdminOverviewComponent implements OnInit {
       });
   }
 
+  carDetails(car) {
+    const carOwner = car.user.name === this.userDetails.name ? "you" : car.user.name;
+    return `${car.make} ${car.model} - ${car.trim} by ${carOwner} (${car.quotes.length || 0} quotes)`;
+  }
+
 }
