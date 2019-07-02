@@ -51,3 +51,23 @@ nav.sidebar {
 		display: none;
 	}
 }
+
+.comment {
+	border: 1px solid #fff;
+	background-color: white;
+	box-shadow: 2px 2px 5px #2d2e2e;
+	padding: 10px;
+	width: 300px;
+	word-wrap: break-word;
+	border-radius: 2px;
+	margin-top: 10px;
+}
+
+.link {
+	cursor: pointer;
+}
+
+.admin-message {
+	margin-left: 50px;
+	background-color: #00a8ff;
+}

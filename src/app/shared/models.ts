@@ -39,7 +39,16 @@ export interface Car {
 export interface Quote {
   id?: number;
   car_id?: number;
+  comments?: Comment[];
   descripiton: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface Comment {
+  id?: number;
+  quote_id?: number;
+  text: string;
   created_at?: string;
   updated_at?: string;
 }

@@ -19,6 +19,7 @@ import { RequestsComponent } from './admin/requests/requests.component';
 import { SettingsComponent } from './admin/settings/settings.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminOverviewComponent } from './admin/admin-overview/admin-overview.component';
+import { RequestDetailComponent } from './admin/requests/request-detail/request-detail.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,10 @@ const routes: Routes = [
       {
         path: 'requests',
         component: RequestsComponent,
+      },
+      {
+        path: 'requests/:id',
+        component: RequestDetailComponent,
       },
       {
         path: 'settings',

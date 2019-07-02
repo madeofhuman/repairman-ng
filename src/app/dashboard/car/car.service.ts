@@ -50,7 +50,7 @@ export class CarService {
    */
   getAllCars() {
     return this.http.get<Car[]>(this.adminRoutes.allCars, httpOptions()).pipe(
-      tap(_ => this.log('Car successfully retrieved!')),
+      tap(_ => this.log('Cars successfully retrieved!')),
       catchError(this.handleError<Car[]>('Get user cars', []))
     );
   }

@@ -21,7 +21,7 @@ export class AdminOverviewComponent implements OnInit {
   }
 
   /**
-   * Get a users cars
+   * Get all users cars
    * Set local variables and
    * @returns void
    */

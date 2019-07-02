@@ -1,0 +1,25 @@
+<div class="container">
+  <p (click)="backNav()" class="link">< Back</p>
+  <br>
+  <h3>{{quote.user && quote.user && quote.user.name}} for {{carDetails(quote.car)}}</h3>
+  <br>
+  <p>{{quote.description}}</p>
+  <div>
+    <b>Comments:</b>
+    <p *ngFor="let comment of quote.comments; index as i" class="comment" [class.admin-message]="comment.user.admin">
+      <b>{{comment.user && (comment.user.admin ? "Admin" : comment.user.name)}}</b>
+      <br>
+      {{comment.text}}
+      <br>
+      <small>({{comment.updated_at}})</small>
+    </p>
+    <br>
+    <form name="commentForm" class="form">
+      <label>Add a comment</label>
+      <textarea class="form-control" id="comment" cols="10" rows="10" [formControl]="quoteComment"></textarea>
+      <br>
+      <button class="btn-secondary" (click)="createComment()">Submit</button>
+    </form>
+    <br>
+  </div>
+</div>
