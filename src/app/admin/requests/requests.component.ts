@@ -35,7 +35,7 @@ export class RequestsComponent implements OnInit {
   }
 
   carDetails(car): string {
-    return car ? `${car && car.make} ${car && car.model} - ${car && car.trim}` : 'Toyota Corolla - XLE';
+    return `${car && car.make} ${car && car.model} - ${car && car.trim}`;
   }
 
 }

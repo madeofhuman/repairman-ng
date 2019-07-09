@@ -8,6 +8,7 @@ import { LoginSigninGuard } from './auth/login-signin.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { QuoteComponent } from './dashboard/quote/quote.component';
+import { QuoteDetailsComponent } from './dashboard/quote-details/quote-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdviceComponent } from './dashboard/advice/advice.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -52,6 +53,10 @@ const routes: Routes = [
       {
         path: 'quotes',
         component: QuoteComponent
+      },
+      {
+        path: 'quote',
+        component: QuoteDetailsComponent
       },
       {
         path: 'services',

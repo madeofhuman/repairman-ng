@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { QuoteComponent } from './quote/quote.component';
@@ -15,6 +15,7 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { CarComponent } from './car/car.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { AddCarComponent } from './car/add-car/add-car.component';
+import { QuoteDetailsComponent } from './quote-details/quote-details.component';
 
 
 @NgModule({
@@ -29,9 +30,11 @@ import { AddCarComponent } from './car/add-car/add-car.component';
     ServicesComponent,
     DashboardComponent,
     AppointmentsComponent,
+    QuoteDetailsComponent,
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     AppRoutingModule,
   ]

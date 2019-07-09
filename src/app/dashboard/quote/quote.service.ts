@@ -46,8 +46,12 @@ export class QuoteService {
    * Get a single quote with the supplied id
    * @param quote_id quote id
    */
-  getQuote(quote_id: number) {
-    return this.http.get<Quote>(`${this.adminRoutes.allQuotes}/${quote_id}`, httpOptions()).pipe(
+  getQuote(quoteId: number, carId?: number) {
+    const url = carId
+      ? `${APIEndPoint}cars/${carId}/quotes/${quoteId}`
+      : `${this.adminRoutes.allQuotes}/${quoteId}`;
+
+    return this.http.get<Quote>(url, httpOptions()).pipe(
       tap(_ => this.log('Quote succesfully retrieved')),
       catchError(this.handleError<Quote>('Get quote failed'))
     );
@@ -59,8 +63,12 @@ export class QuoteService {
    * @param carId - car Id
    * @returns a newly added quotes as an observable
    */
-  addQuoteComment(quoteId: number, comment: string): Observable<Comment> {
-    return this.http.post<Comment>(`${this.adminRoutes.allQuotes}/${quoteId}/comments`, comment, httpOptions()).pipe(
+  addQuoteComment(quoteId: number, comment: string, carId?: number): Observable<Comment> {
+    const url = carId
+      ? `${APIEndPoint}cars/${carId}/quotes/${quoteId}/comments`
+      : `${this.adminRoutes.allQuotes}/${quoteId}/comments`;
+
+    return this.http.post<Comment>(url, comment, httpOptions()).pipe(
       tap(_ => this.log('Comment was successfully added')),
       catchError(this.handleError<Comment>('Add quote comment failed'))
     );

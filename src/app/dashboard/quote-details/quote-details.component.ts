@@ -6,17 +6,18 @@ import { ActivatedRoute } from "@angular/router";
 import { QuoteService } from 'src/app/dashboard/quote/quote.service';
 
 @Component({
-  selector: 'app-request-detail',
-  templateUrl: './request-detail.component.html',
-  styleUrls: ['./request-detail.component.scss']
+  selector: 'app-quote-details',
+  templateUrl: './quote-details.component.html',
+  styleUrls: ['./quote-details.component.scss']
 })
-export class RequestDetailComponent implements OnInit {
+export class QuoteDetailsComponent implements OnInit {
 
   private notifier: NotifierService;
 
   quote: any;
 
-  urlId: number;
+  quoteId: number;
+  carId: number;
 
   quoteComment = new FormControl('');
 
@@ -32,17 +33,18 @@ export class RequestDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.urlId = parseInt(params.get("id"), 10);
+    this.route.queryParamMap.subscribe(params => {
+      this.quoteId = parseInt(params.get("quote_id"), 10);
+      this.carId = parseInt(params.get("car_id"), 10);
+      this.quoteService.getQuote(this.quoteId, this.carId)
+        .subscribe((quote) => {
+          this.quote = quote;
+        })
     });
-    this.quoteService.getQuote(this.urlId)
-      .subscribe((quote) => {
-        this.quote = quote;
-      })
   }
 
   carDetails(car): string {
-    return car ? `${car && car.make} ${car && car.model} - ${car && car.trim}` : 'Toyota Corolla - XLE';
+    return `${car && car.make} ${car && car.model} - ${car && car.trim}`;
   }
 
   backNav(): void {
@@ -57,13 +59,12 @@ export class RequestDetailComponent implements OnInit {
       quote_id: this.quote.id,
     });
     const formControl = this.quoteComment;
-    this.quoteService.addQuoteComment(this.quote.id, commentObject)
+    this.quoteService.addQuoteComment(this.quote.id, commentObject, this.carId)
       .subscribe((newComment) => {
         this.notifier.notify('success', 'Quote comment created');
         formControl.reset();
-        this.quoteService.getQuote(newComment.quote_id)
+        this.quoteService.getQuote(newComment.quote_id, this.carId)
           .subscribe((quote) => {
-            console.log('quote>>>', quote);
             this.quote = quote;
           });
       });

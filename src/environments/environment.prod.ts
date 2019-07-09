@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  APIEndPoint: 'https://repairman-api.herokuapp.com/'
+  APIEndPoint: 'https://repairman--api.herokuapp.com/'
 };

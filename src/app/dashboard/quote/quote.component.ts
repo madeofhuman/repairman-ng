@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Car, Quote } from 'src/app/shared/models';
 import { NotifierService } from 'angular-notifier';
 import { CarService } from '../car/car.service';
@@ -18,7 +18,8 @@ export class QuoteComponent implements OnInit {
   constructor(
     private router: Router,
     private carService: CarService,
-    private notifierService: NotifierService
+    private notifierService: NotifierService,
+    private route: ActivatedRoute,
   ) {
     this.notifier = notifierService;
   }
@@ -77,7 +78,7 @@ export class QuoteComponent implements OnInit {
     if (!(
       desc.value && desc.value.length > 10
     )) {
-      return this.notifier.notify('error', 'Mileage description must be atleast 10 characters');
+      return this.notifier.notify('error', 'Mileage description must be at least 10 characters');
     }
 
     const quoteObject = JSON.stringify({ description: desc.value });
@@ -87,6 +88,10 @@ export class QuoteComponent implements OnInit {
         this.notifier.notify('success', 'Your quote has been added successfully');
         this.router.navigate(['/dashboard/cars']);
       });
+  }
+
+  carDetails(car): string {
+    return `${car && car.make} ${car && car.model} - ${car && car.trim}`;
   }
 
 }
