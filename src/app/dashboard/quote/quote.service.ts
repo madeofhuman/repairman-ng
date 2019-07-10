@@ -33,10 +33,14 @@ export class QuoteService {
 
   /**
    * Get all the quotes that exist on the system (admin)
+   * Or get all the quotes of a user (with supplied user id param)
    * @returns an observable array of all quotes
    */
-  getAllQuotes() {
-    return this.http.get<Quote[]>(this.adminRoutes.allQuotes, httpOptions()).pipe(
+  getAllQuotes(user_id?: number) {
+    const url = user_id
+      ? `${APIEndPoint}users/${user_id}/quotes`
+      : this.adminRoutes.allQuotes;
+    return this.http.get<Quote[]>(url, httpOptions()).pipe(
       tap(_ => this.log('Quotes sucessfully retrieved!')),
       catchError(this.handleError<Quote[]>('Get all quotes', []))
     );
