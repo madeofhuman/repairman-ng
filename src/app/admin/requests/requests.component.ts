@@ -24,7 +24,6 @@ export class RequestsComponent implements OnInit {
   getQuotes(): void {
     this.quoteService.getAllQuotes()
       .subscribe((quotes) => {
-        console.log('quotes>>>', quotes);
         this.quotes = quotes;
       })
   }

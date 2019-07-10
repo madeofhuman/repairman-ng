@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Car, Quote } from 'src/app/shared/models';
 import { NotifierService } from 'angular-notifier';
 import { CarService } from '../car/car.service';
+import { QuoteService } from '../quote/quote.service';
 
 @Component({
   selector: 'app-quote',
@@ -14,10 +15,12 @@ export class QuoteComponent implements OnInit {
   cars: Car[];
   carQuotes: Quote[];
   private readonly notifier: NotifierService;
+  user_id: number;
 
   constructor(
     private router: Router,
     private carService: CarService,
+    private quoteService: QuoteService,
     private notifierService: NotifierService,
     private route: ActivatedRoute,
   ) {
@@ -25,7 +28,8 @@ export class QuoteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUserCars();
+    this.user_id = JSON.parse(localStorage.getItem('auth_user')).id;
+    this.getUserCarsAndQuotes();
   }
 
   /**
@@ -33,11 +37,14 @@ export class QuoteComponent implements OnInit {
    * to our car service
    * @return void
    */
-  getUserCars(): void {
+  getUserCarsAndQuotes(): void {
     this.carService.getCars()
       .subscribe((cars) => {
         this.cars = cars;
-        this.setQuotes(cars);
+      });
+    this.quoteService.getAllQuotes(this.user_id)
+      .subscribe((quotes) => {
+        this.carQuotes = quotes;
       });
   }
 
@@ -50,7 +57,7 @@ export class QuoteComponent implements OnInit {
   setQuotes(cars: Car[]): void {
     cars = Array.isArray(cars) ? cars : [];
     cars.map((car) => {
-      this.carQuotes = [...this.carQuotes || [], ...car.quotes];
+      this.carQuotes = [...this.carQuotes || [], ...car.quotes.reverse()];
     });
   }
 
@@ -86,7 +93,11 @@ export class QuoteComponent implements OnInit {
     return this.carService.addQuote(quoteObject, +car.value)
       .subscribe(() => {
         this.notifier.notify('success', 'Your quote has been added successfully');
-        this.router.navigate(['/dashboard/cars']);
+        desc.value = '';
+        this.quoteService.getAllQuotes(this.user_id)
+          .subscribe((quotes) => {
+            this.carQuotes = quotes;
+          });
       });
   }
 
