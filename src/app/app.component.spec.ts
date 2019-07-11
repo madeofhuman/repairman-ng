@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let de: DebugElement;

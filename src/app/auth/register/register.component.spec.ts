@@ -10,7 +10,7 @@ import { NotifierService } from 'angular-notifier';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('RegisterComponent', () => {
+describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let de: DebugElement;

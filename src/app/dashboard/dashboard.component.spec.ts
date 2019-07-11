@@ -8,7 +8,7 @@ import { DashboardComponent } from './dashboard.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let serviceStub: Partial<any>;
