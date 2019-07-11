@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ProfJigsaw/repairman-ng.svg?branch=master)](https://travis-ci.org/ProfJigsaw/repairman-ng)
+[![Build Status](https://travis-ci.org/madeofhuman/repairman-ng.svg?branch=master)](https://travis-ci.org/madeofhuman/repairman-ng) [![Maintainability](https://api.codeclimate.com/v1/badges/3146d4e24e5bacf0da23/maintainability)](https://codeclimate.com/github/madeofhuman/repairman-ng/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/3146d4e24e5bacf0da23/test_coverage)](https://codeclimate.com/github/madeofhuman/repairman-ng/test_coverage)
 
 # Repairman
 

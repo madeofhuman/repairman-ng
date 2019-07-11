@@ -5,7 +5,7 @@ node_js:
   - "8"
 env:
   global:
-    - CC_TEST_REPORTER_ID=a67ba0670b4485538244f9d5bbddd978ab05bd87604c748a3229cd044fd30f78
+    - CC_TEST_REPORTER_ID=ecef57a277b071cfe2a01110c27c054bfe8d630caf6a6a882fa30b2ed012ccb3
 addons:
   apt:
     sources:
